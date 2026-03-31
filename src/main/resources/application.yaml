@@ -6,7 +6,7 @@ spring:
     name: flowable
 
   datasource:
-    url: jdbc:postgresql://localhost:5433/flowable
+    url: jdbc:postgresql://localhost:5433/flowable?characterEncoding=UTF-8
     username: flowable
     password: flowable
     driver-class-name: org.postgresql.Driver
@@ -14,17 +14,14 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
-    show-sql: true
+    properties:
+      hibernate:
+        hbm2ddl:
+          create_namespace: true
+        default_schema: flowable
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
-  main:
-    allow-bean-definition-overriding: true
-
-
 flowable:
-  tenants: SL,IND
-  check-process-definitions: false
-  async-executor-activate: true   # keep if you use async jobs
   database-schema-update: true
-  process:
-    definition-location-prefix: classpath:/none/
+  async-executor-activate: true
+  tenants: SL, IND
