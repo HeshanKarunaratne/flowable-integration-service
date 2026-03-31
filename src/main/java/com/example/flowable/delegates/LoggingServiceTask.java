@@ -1,4 +1,4 @@
-package com.example.flowable.workers;
+package com.example.flowable.delegates;
 
 /**
  * @author Heshan Karunaratne

@@ -2,6 +2,9 @@ package com.example.flowable.deploy;
 
 import jakarta.annotation.PostConstruct;
 import org.flowable.engine.RepositoryService;
+import org.flowable.engine.repository.Deployment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
@@ -9,13 +12,10 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import java.io.IOException;
 
-/**
- * Deploys all workflows from resources/processes/ to all tenants.
- * Skips deployment if the workflow already exists for a tenant.
- */
 @Configuration
 public class MultiTenantWorkflowDeployer {
 
+    private static final Logger LOG = LoggerFactory.getLogger(MultiTenantWorkflowDeployer.class);
     private final RepositoryService repositoryService;
 
     @Value("${flowable.tenants}")
@@ -27,20 +27,19 @@ public class MultiTenantWorkflowDeployer {
 
     @PostConstruct
     public void deployWorkflowsForAllTenants() throws IOException {
-        // Load all BPMN files
+
         Resource[] resources = new PathMatchingResourcePatternResolver()
                 .getResources("classpath:processes/*.bpmn20.xml");
+        LOG.info("Starting workflow deployment for {} tenants", tenants.length);
 
         for (String tenantId : tenants) {
-            System.out.println("Deploying workflows for tenant: " + tenantId);
             for (Resource resource : resources) {
+
                 String filename = resource.getFilename();
                 if (filename == null) continue;
 
-                // derive process key from filename (remove extension)
                 String processKey = filename.replaceAll("\\.bpmn20\\.xml$", "");
 
-                // Check if this process is already deployed for the tenant
                 long count = repositoryService.createProcessDefinitionQuery()
                         .processDefinitionKey(processKey)
                         .processDefinitionTenantId(tenantId)
@@ -54,12 +53,14 @@ public class MultiTenantWorkflowDeployer {
                             .enableDuplicateFiltering()
                             .deploy();
 
-                    System.out.println("✅ Deployed workflow: " + filename + " for tenant " + tenantId);
+                    LOG.info("Deployed {} for tenant {}", filename, tenantId);
                 } else {
-                    System.out.println("⏩ Workflow already deployed: " + filename + " for tenant " + tenantId);
+                    LOG.info("Skipped {} for tenant {} (already exists)", filename, tenantId);
                 }
+
             }
         }
-        System.out.println("All tenant workflow deployments completed.");
+
+        LOG.info("Completed workflow deployment for all tenants");
     }
 }
