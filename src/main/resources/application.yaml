@@ -19,3 +19,12 @@ spring:
 
   main:
     allow-bean-definition-overriding: true
+
+
+flowable:
+  tenants: SL,IND
+  check-process-definitions: false
+  async-executor-activate: true   # keep if you use async jobs
+  database-schema-update: true
+  process:
+    definition-location-prefix: classpath:/none/
