@@ -1,5 +1,5 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Flowable Open Source Modeler" exporterVersion="6.8.0">
-  <process id="logScript" name="Log Script" isExecutable="true">
+  <process id="logScript" name="Log Script Common" isExecutable="true">
     <startEvent id="start_id" name="Start" flowable:formFieldValidation="true"/>
     <endEvent id="end_id" name="End"/>
     <sequenceFlow id="sid-03B4FA62-C278-4397-8B2F-ADB7F623F976" sourceRef="start_id" targetRef="scriptTask1"/>
