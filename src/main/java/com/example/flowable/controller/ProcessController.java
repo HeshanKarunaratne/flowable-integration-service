@@ -20,10 +20,19 @@ public class ProcessController {
         this.runtimeService = runtimeService;
     }
 
-    @PostMapping("/start")
-    public String startProcess() {
+    @PostMapping("/start/log")
+    public String startLogProcess(@RequestParam String tenantId) {
         ProcessInstance instance = runtimeService
-                .startProcessInstanceByKey("log_process_key");
-        return "Started process with ID: " + instance.getId();
+                .startProcessInstanceByKeyAndTenantId("log_process_key", tenantId);
+        return "Started log_process_key for tenant " + tenantId +
+                " with ID: " + instance.getId();
+    }
+
+    @PostMapping("/start/script")
+    public String startScriptProcess(@RequestParam String tenantId) {
+        ProcessInstance instance = runtimeService
+                .startProcessInstanceByKeyAndTenantId("logScript", tenantId);
+        return "Started logScript for tenant " + tenantId +
+                " with ID: " + instance.getId();
     }
 }
