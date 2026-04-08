@@ -87,7 +87,7 @@ public class WorkflowDeploymentService {
                 .name(filename)
                 .tenantId(tenantId)
                 .addInputStream(filename, resource.getInputStream())
-                .enableDuplicateFiltering() // ✅ Production standard
+                .enableDuplicateFiltering()
                 .deploy();
 
         logVersion(tenantId, processKey, deployment);
