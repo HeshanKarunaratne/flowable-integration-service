@@ -1,4 +1,4 @@
-package com.example.flowable.deploy;
+package com.example.flowable.deploy.workflows;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;

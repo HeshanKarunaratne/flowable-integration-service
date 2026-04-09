@@ -1,4 +1,4 @@
-package com.example.flowable.deploy;
+package com.example.flowable.deploy.workflows;
 
 import org.flowable.engine.RepositoryService;
 import org.flowable.engine.repository.Deployment;
