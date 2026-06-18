@@ -59,6 +59,11 @@
 			<version>4.16.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.camel.springboot</groupId>
+			<artifactId>camel-platform-http-starter</artifactId>
+			<version>4.16.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.flowable</groupId>
 			<artifactId>flowable-spring-boot-starter-process</artifactId>
 			<version>6.8.0</version>
@@ -80,6 +85,12 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.46</version>
+			<scope>compile</scope>
 		</dependency>
 
 	</dependencies>

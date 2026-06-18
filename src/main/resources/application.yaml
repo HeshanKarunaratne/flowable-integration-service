@@ -24,4 +24,4 @@ spring:
 flowable:
   database-schema-update: true
   async-executor-activate: true
-  tenants: SL, IND
+  tenants: SL

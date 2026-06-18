@@ -33,6 +33,7 @@ public class FlowableConfig {
         config.setDataSource(dataSource);
         config.setTransactionManager(transactionManager);
         config.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
+        config.setAsyncExecutorActivate(true);
         return config;
     }
 
