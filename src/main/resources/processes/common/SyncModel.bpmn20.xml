@@ -6,7 +6,13 @@
     <serviceTask id="sync2" name="Task 2" flowable:delegateExpression="${taskB}"></serviceTask>
     <sequenceFlow id="sid-47E85A89-053D-4564-AC66-BF4B868CDF6B" sourceRef="startEvent1" targetRef="sync1"></sequenceFlow>
     <sequenceFlow id="sid-926AC014-0CE8-4E7E-9111-72C6E3CC1738" sourceRef="sync1" targetRef="sync2"></sequenceFlow>
-    <endEvent id="sid-EA27A4CE-ACBF-4986-926E-CC9F2B71F38E"></endEvent>
+    <endEvent id="sid-EA27A4CE-ACBF-4986-926E-CC9F2B71F38E">
+      <extensionElements>
+        <flowable:executionListener
+                event="end"
+                delegateExpression="${startAsyncProcessListener}" />
+      </extensionElements>
+    </endEvent>
     <sequenceFlow id="sid-01C76479-80DD-4C82-8C85-106154FB25B6" sourceRef="sync2" targetRef="sid-EA27A4CE-ACBF-4986-926E-CC9F2B71F38E"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_sync-model">
